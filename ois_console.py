@@ -119,7 +119,6 @@ class Screen:
             char = chr(char_row)
             if char == "\n":
                 break
-            self.print(str(char_row).encode("utf-8"))
             if char_row == curses.KEY_BACKSPACE or char_row == 127:
                 if input_count != 0:
                     input_count -= 1
