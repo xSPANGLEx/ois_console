@@ -78,7 +78,6 @@ class Screen:
         while self.lock:
             time.sleep(0.05)
         self.lock = True
-        self.lock = True
         scr = self.output_scr[screen]
         scr_pos = self.output_pos[screen]
         for i in range(scr_pos[1]):
@@ -96,6 +95,9 @@ class Screen:
         self.refresh(screen)
 
     def clear(self, screen=0):
+        while self.lock:
+            time.sleep(0.05)
+        self.lock = True
         scr = self.output_scr[screen]
         width = scr.getmaxyx()[1]
         height = scr.getmaxyx()[0]
@@ -106,6 +108,7 @@ class Screen:
                 scr.addch(i, j, " ")
         self.output_pos[screen] = [0, 0]
         self.refresh(screen)
+        self.lock = False
 
     def input(self):
         for i in range(self.term_width-1):
